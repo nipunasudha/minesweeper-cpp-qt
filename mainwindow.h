@@ -18,7 +18,10 @@ class MainWindow: public QMainWindow
         ~MainWindow();
         public slots:
     private:
-        Ui::MainWindow *ui;
+            Box* grid[10][10];
+            Ui::MainWindow *ui;
+            void setupGrid();
+            int findBombCount(int x,int y);
 
 };
 #endif
