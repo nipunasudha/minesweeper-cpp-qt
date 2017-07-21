@@ -23,15 +23,15 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>50</y>
+      <x>50</x>
+      <y>40</y>
       <width>441</width>
       <height>421</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mineField">
      <property name="spacing">
-      <number>0</number>
+      <number>2</number>
      </property>
     </layout>
    </widget>

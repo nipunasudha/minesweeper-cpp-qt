@@ -54,9 +54,9 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayoutWidget = new QWidget(centralwidget);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(60, 50, 441, 421));
+        gridLayoutWidget->setGeometry(QRect(50, 40, 441, 421));
         mineField = new QGridLayout(gridLayoutWidget);
-        mineField->setSpacing(0);
+        mineField->setSpacing(2);
         mineField->setObjectName(QString::fromUtf8("mineField"));
         mineField->setContentsMargins(0, 0, 0, 0);
         MainWindow->setCentralWidget(centralwidget);
