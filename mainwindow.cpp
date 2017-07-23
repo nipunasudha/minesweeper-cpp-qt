@@ -28,6 +28,9 @@ void MainWindow::setupGrid(){
             grid[i][j]=b;
             b->setSizePolicy(QSizePolicy ::Expanding , QSizePolicy ::Expanding );
             b->setFocusPolicy(Qt::NoFocus);
+            QFont font = b->font();
+            font.setPointSize(18);
+            b->setFont(font);
             ui->mineField->addWidget(b,i,j);
             //event binding
             signalMapper->setMapping(b,(i*1000)+j);
@@ -54,9 +57,27 @@ void MainWindow::boxClicked(int id){
     xy[1]=id%1000;
     printf("clicked - (%d,%d)\n",
             xy[0],xy[1]);
-  Box* b=grid[xy[0]][xy[1]];
-  b->boxClicked(); 
+    Box* b=grid[xy[0]][xy[1]];
+    b->boxClicked(); 
+    recursiveClean(xy[0],xy[1]);
+}
+void MainWindow::recursiveClean(int x,int y){
+        grid[x][y]->boxClicked();
+        grid[x][y]->setBombCount(findBombCount(x,y));
+    if(findBombCount(x,y)==0){
+        for(int i=-1;i<=1;i++){
+            if(x+i<0 || x+i>SIZE-1)continue;
+            for(int j=-1;j<=1;j++){
+                if(y+j<0 || y+j>SIZE-1 || (i==0 && j==0))continue;
+                if(!grid[x+i][y+j]->isClicked()){
+                    recursiveClean(x+i,y+j);
+                }
+            }
+        }
 
+    }else{
+        return;
+    }
 }
 MainWindow::~MainWindow()
 {

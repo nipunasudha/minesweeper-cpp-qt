@@ -18,6 +18,7 @@ class Box: public QPushButton
         void flag();
         void setBomb(bool b);
         bool boxClicked();
+        bool isClicked();
 
 };
 #endif

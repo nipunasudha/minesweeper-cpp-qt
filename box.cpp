@@ -8,13 +8,12 @@ Box::Box(const QString & text,bool bomb, QWidget * parent) : QPushButton(text, p
     bombCount=0;
     boxState=BoxState::unclicked;
     setBomb(bomb);
-    //connect(this,SIGNAL(clicked()),this,SLOT(boxClicked()));
     update();
 }
 
 
 void Box::setBombCount(int c){
-
+    if(c!=0)setText(QString::number(c));
 }
 bool Box::isBomb(){
 
@@ -26,6 +25,9 @@ void Box::setBomb(bool b){
 void Box::flag(){
 
 }
+bool Box::isClicked(){
+    return (boxState==BoxState::clicked);
+}
 bool Box::boxClicked(){
 
     boxState=isBomb()?BoxState::exploded:BoxState::clicked;
@@ -35,11 +37,15 @@ bool Box::boxClicked(){
 void Box::update(){
     QString style="";
     if(boxState==BoxState::unclicked){
+#ifdef DEBUG
         if(isBomb()){
             style+="QPushButton {background-color: rgb(255, 180, 180);border-style: inset;border:1px solid #666;}";
         }else{
+#endif
             style+="QPushButton {background-color: rgb(255, 255, 255);border-style: inset;border:1px solid #666;}";
+#ifdef DEBUG
         }
+#endif
         style+="QPushButton:hover {background-color: rgb(255, 250, 214);border-style: inset;}";
         setText(""); 
     }else if(boxState==BoxState::clicked){

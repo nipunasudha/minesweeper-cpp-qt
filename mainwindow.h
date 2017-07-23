@@ -19,10 +19,11 @@ class MainWindow: public QMainWindow
         public slots:
             void boxClicked(int x);
     private:
-            Box* grid[10][10];
-            Ui::MainWindow *ui;
-            void setupGrid();
-            int findBombCount(int x,int y);
+        Box* grid[10][10];
+        Ui::MainWindow *ui;
+        void setupGrid();
+        int findBombCount(int x,int y);
+        void recursiveClean(int x,int y);
 
 };
 #endif
