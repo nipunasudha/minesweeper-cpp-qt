@@ -16,7 +16,6 @@ class Box: public QPushButton
         bool isBomb();
         void update();
         void flag();
-        public slots:
         void setBomb(bool b);
         bool boxClicked();
 

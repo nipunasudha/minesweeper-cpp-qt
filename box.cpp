@@ -8,7 +8,7 @@ Box::Box(const QString & text,bool bomb, QWidget * parent) : QPushButton(text, p
     bombCount=0;
     boxState=BoxState::unclicked;
     setBomb(bomb);
-    connect(this,SIGNAL(clicked()),this,SLOT(boxClicked()));
+    //connect(this,SIGNAL(clicked()),this,SLOT(boxClicked()));
     update();
 }
 

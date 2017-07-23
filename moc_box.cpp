@@ -22,36 +22,26 @@ static const uint qt_meta_data_Box[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       0,    0, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
- // slots: signature, parameters, type, tag, flags
-       7,    5,    4,    4, 0x0a,
-      26,    4,   21,    4, 0x0a,
-
        0        // eod
 };
 
 static const char qt_meta_stringdata_Box[] = {
-    "Box\0\0b\0setBomb(bool)\0bool\0boxClicked()\0"
+    "Box\0"
 };
 
 void Box::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        Q_ASSERT(staticMetaObject.cast(_o));
-        Box *_t = static_cast<Box *>(_o);
-        switch (_id) {
-        case 0: _t->setBomb((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 1: { bool _r = _t->boxClicked();
-            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        default: ;
-        }
-    }
+    Q_UNUSED(_o);
+    Q_UNUSED(_id);
+    Q_UNUSED(_c);
+    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData Box::staticMetaObjectExtraData = {
@@ -85,11 +75,6 @@ int Box::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     _id = QPushButton::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
-    if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
-            qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
-    }
     return _id;
 }
 QT_END_MOC_NAMESPACE
