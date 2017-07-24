@@ -18,13 +18,16 @@ class MainWindow: public QMainWindow
         ~MainWindow();
         public slots:
             void boxClicked(int x);
-            void boxRightClicked(int id);
+        void boxRightClicked(int id);
     private:
         Box* grid[10][10];
         Ui::MainWindow *ui;
         void setupGrid();
+        void setupMenu();
         int findBombCount(int x,int y);
         void recursiveClean(int x,int y);
+signals:
+        void newGame();
 
 };
 #endif

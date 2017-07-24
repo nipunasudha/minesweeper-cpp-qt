@@ -16,6 +16,7 @@
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QMainWindow>
+#include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
 #include <QtGui/QStatusBar>
 #include <QtGui/QWidget>
@@ -28,10 +29,13 @@ public:
     QAction *actionSave;
     QAction *actionExit;
     QAction *actionAbout;
+    QAction *actionNew_Game;
+    QAction *actionExit_2;
     QWidget *centralwidget;
     QWidget *gridLayoutWidget;
     QGridLayout *mineField;
     QMenuBar *menubar;
+    QMenu *menuGame;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
@@ -50,6 +54,10 @@ public:
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionAbout = new QAction(MainWindow);
         actionAbout->setObjectName(QString::fromUtf8("actionAbout"));
+        actionNew_Game = new QAction(MainWindow);
+        actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
+        actionExit_2 = new QAction(MainWindow);
+        actionExit_2->setObjectName(QString::fromUtf8("actionExit_2"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayoutWidget = new QWidget(centralwidget);
@@ -63,10 +71,16 @@ public:
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 559, 25));
+        menuGame = new QMenu(menubar);
+        menuGame->setObjectName(QString::fromUtf8("menuGame"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
+
+        menubar->addAction(menuGame->menuAction());
+        menuGame->addAction(actionNew_Game);
+        menuGame->addAction(actionExit_2);
 
         retranslateUi(MainWindow);
 
@@ -79,6 +93,9 @@ public:
         actionSave->setText(QApplication::translate("MainWindow", "Save", 0, QApplication::UnicodeUTF8));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
         actionAbout->setText(QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
+        actionNew_Game->setText(QApplication::translate("MainWindow", "New Game", 0, QApplication::UnicodeUTF8));
+        actionExit_2->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
+        menuGame->setTitle(QApplication::translate("MainWindow", "Game", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

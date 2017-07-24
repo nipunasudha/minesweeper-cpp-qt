@@ -12,12 +12,15 @@ MainWindow::MainWindow(QWidget *parent):
 {
     srand(time(NULL));
     ui->setupUi(this);
-    printf("count - %d\n",findBombCount(9,9));
-    //============================================
+    //=======================
     setupGrid();
+    setupMenu();
+}
+void MainWindow::setupMenu(){
+    connect(ui->actionNew_Game, SIGNAL(triggered()),this, SIGNAL(newGame()));
 }
 void MainWindow::setupGrid(){
-//mapper definitions
+    //mapper definitions
     QSignalMapper *mouseLeftMapper;
     QSignalMapper *mouseRightMapper;
     mouseLeftMapper = new QSignalMapper(this);
@@ -44,6 +47,8 @@ void MainWindow::setupGrid(){
         }
     }
 }
+
+
 int MainWindow::findBombCount(int x,int y){
     int count=0;
     for(int i=-1;i<=1;i++){
@@ -77,8 +82,8 @@ void MainWindow::boxRightClicked(int id){
     b->boxRightClicked(); 
 }
 void MainWindow::recursiveClean(int x,int y){
-        grid[x][y]->boxClicked();
-        grid[x][y]->setBombCount(findBombCount(x,y));
+    grid[x][y]->boxClicked();
+    grid[x][y]->setBombCount(findBombCount(x,y));
     if(findBombCount(x,y)==0){
         for(int i=-1;i<=1;i++){
             if(x+i<0 || x+i>SIZE-1)continue;
