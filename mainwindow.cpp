@@ -6,10 +6,13 @@
 #include <cstdlib>
 #include <ctime>
 #define SIZE 10
+#define BOMBLEVEL 5
 MainWindow::MainWindow(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    boxSize=37;
+    isGameOngoing=true;
     srand(time(NULL));
     ui->setupUi(this);
     //=======================
@@ -30,11 +33,13 @@ void MainWindow::setupGrid(){
 
     for(int i=0;i<SIZE;i++){
         for(int j=0;j<SIZE;j++){
-            bool bomb=(utils::randbool(5));
+            bool bomb=(utils::randbool(BOMBLEVEL));
             Box *b=new Box("Yeah sure",bomb);
             grid[i][j]=b;
             b->setSizePolicy(QSizePolicy ::Expanding , QSizePolicy ::Expanding );
             b->setFocusPolicy(Qt::NoFocus);
+            b->setMinimumSize(boxSize,boxSize);
+            b->setMaximumSize(boxSize,boxSize);
             QFont font = b->font();
             font.setPointSize(18);
             b->setFont(font);
@@ -62,17 +67,59 @@ int MainWindow::findBombCount(int x,int y){
     }
     return count;
 }
+bool MainWindow::winCheck(){
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            Box *b=grid[i][j];
+            if(b->isBomb() && !b->isFlagged())return false;       
+            if(!b->isBomb() && !b->isClicked())return false;
+            if(!b->isBomb() && b->isFlagged())return false;       
+        }
+    }
+    printf("You won\n");
+    isGameOngoing=false;
+    showMsg("Congratulations, You Won!");
+    return true;
+}
+void MainWindow::showMsg(QString s){
+
+    QMessageBox msgbox;
+    msgbox.setWindowTitle("Minesweeper");
+    msgbox.setText(s);
+    msgbox.exec();
+}
+void MainWindow::explodeAll(){
+    for(int i=0;i<SIZE;i++){
+        for(int j=0;j<SIZE;j++){
+            Box *b=grid[i][j];
+            if(b->isBomb()){
+                b->boxClicked();
+            }
+
+        }
+    }
+    isGameOngoing=false;
+    showMsg("Oops! You lose.");
+}
 void MainWindow::boxClicked(int id){
+    if(!isGameOngoing)return;
     int xy[2];
     xy[0]=id/1000;
     xy[1]=id%1000;
-    printf("clicked - (%d,%d)\n",
-            xy[0],xy[1]);
+    //printf("clicked - (%d,%d)\n",
+    //xy[0],xy[1]);
     Box* b=grid[xy[0]][xy[1]];
+    if(b->isBomb()){
+        explodeAll();
+        b->boxClicked(); 
+        return;
+    }
     b->boxClicked(); 
     recursiveClean(xy[0],xy[1]);
+    winCheck();
 }
 void MainWindow::boxRightClicked(int id){
+    if(!isGameOngoing)return;
     int xy[2];
     xy[0]=id/1000;
     xy[1]=id%1000;
@@ -80,6 +127,7 @@ void MainWindow::boxRightClicked(int id){
             xy[0],xy[1]);
     Box* b=grid[xy[0]][xy[1]];
     b->boxRightClicked(); 
+    winCheck();
 }
 void MainWindow::recursiveClean(int x,int y){
     grid[x][y]->boxClicked();

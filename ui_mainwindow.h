@@ -15,6 +15,7 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QGridLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
@@ -31,18 +32,22 @@ public:
     QAction *actionAbout;
     QAction *actionNew_Game;
     QAction *actionExit_2;
+    QAction *actionInstructions;
+    QAction *actionAbout_2;
     QWidget *centralwidget;
     QWidget *gridLayoutWidget;
     QGridLayout *mineField;
+    QLabel *label;
     QMenuBar *menubar;
     QMenu *menuGame;
+    QMenu *menuHelp;
     QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(559, 552);
+        MainWindow->resize(468, 552);
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Maximum);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -58,29 +63,43 @@ public:
         actionNew_Game->setObjectName(QString::fromUtf8("actionNew_Game"));
         actionExit_2 = new QAction(MainWindow);
         actionExit_2->setObjectName(QString::fromUtf8("actionExit_2"));
+        actionInstructions = new QAction(MainWindow);
+        actionInstructions->setObjectName(QString::fromUtf8("actionInstructions"));
+        actionAbout_2 = new QAction(MainWindow);
+        actionAbout_2->setObjectName(QString::fromUtf8("actionAbout_2"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayoutWidget = new QWidget(centralwidget);
         gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(50, 40, 441, 421));
+        gridLayoutWidget->setGeometry(QRect(30, 90, 411, 411));
         mineField = new QGridLayout(gridLayoutWidget);
         mineField->setSpacing(2);
         mineField->setObjectName(QString::fromUtf8("mineField"));
         mineField->setContentsMargins(0, 0, 0, 0);
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(60, 10, 361, 71));
+        label->setPixmap(QPixmap(QString::fromUtf8(":/img/logo.png")));
+        label->setScaledContents(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 559, 25));
+        menubar->setGeometry(QRect(0, 0, 468, 25));
         menuGame = new QMenu(menubar);
         menuGame->setObjectName(QString::fromUtf8("menuGame"));
+        menuHelp = new QMenu(menubar);
+        menuHelp->setObjectName(QString::fromUtf8("menuHelp"));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
         MainWindow->setStatusBar(statusbar);
 
         menubar->addAction(menuGame->menuAction());
+        menubar->addAction(menuHelp->menuAction());
         menuGame->addAction(actionNew_Game);
         menuGame->addAction(actionExit_2);
+        menuHelp->addAction(actionInstructions);
+        menuHelp->addAction(actionAbout_2);
 
         retranslateUi(MainWindow);
 
@@ -95,7 +114,11 @@ public:
         actionAbout->setText(QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
         actionNew_Game->setText(QApplication::translate("MainWindow", "New Game", 0, QApplication::UnicodeUTF8));
         actionExit_2->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
+        actionInstructions->setText(QApplication::translate("MainWindow", "Instructions", 0, QApplication::UnicodeUTF8));
+        actionAbout_2->setText(QApplication::translate("MainWindow", "About", 0, QApplication::UnicodeUTF8));
+        label->setText(QString());
         menuGame->setTitle(QApplication::translate("MainWindow", "Game", 0, QApplication::UnicodeUTF8));
+        menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

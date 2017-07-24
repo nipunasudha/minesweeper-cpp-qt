@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>559</width>
+    <width>468</width>
     <height>552</height>
    </rect>
   </property>
@@ -23,10 +23,10 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>40</y>
-      <width>441</width>
-      <height>421</height>
+      <x>30</x>
+      <y>90</y>
+      <width>411</width>
+      <height>411</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mineField">
@@ -35,13 +35,32 @@
      </property>
     </layout>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>10</y>
+      <width>361</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources.qrc">:/img/logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>559</width>
+     <width>468</width>
      <height>25</height>
     </rect>
    </property>
@@ -52,7 +71,15 @@
     <addaction name="actionNew_Game"/>
     <addaction name="actionExit_2"/>
    </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionInstructions"/>
+    <addaction name="actionAbout_2"/>
+   </widget>
    <addaction name="menuGame"/>
+   <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
@@ -80,7 +107,19 @@
     <string>Exit</string>
    </property>
   </action>
+  <action name="actionInstructions">
+   <property name="text">
+    <string>Instructions</string>
+   </property>
+  </action>
+  <action name="actionAbout_2">
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

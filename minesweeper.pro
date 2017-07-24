@@ -11,3 +11,8 @@ INCLUDEPATH += .
 HEADERS += box.h gamemanager.h mainwindow.h utils.h
 FORMS += mainwindow.ui
 SOURCES += box.cpp gamemanager.cpp main.cpp mainwindow.cpp
+
+DISTFILES +=
+
+RESOURCES += \
+    resources.qrc

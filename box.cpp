@@ -20,6 +20,10 @@ bool Box::isBomb(){
 
     return bomb;
 }
+bool Box::isFlagged(){
+
+    return flagged;
+}
 void Box::setBomb(bool b){
     bomb=b;
 }
@@ -42,7 +46,7 @@ void Box::mousePressEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::RightButton)
         emit rightClicked();
-    if(e->button()==Qt::LeftButton)
+    if(e->button()==Qt::LeftButton && !isFlagged())
         emit clicked();
 }
 bool Box::boxRightClicked(){

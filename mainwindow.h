@@ -22,10 +22,15 @@ class MainWindow: public QMainWindow
     private:
         Box* grid[10][10];
         Ui::MainWindow *ui;
+        int boxSize;
+        bool isGameOngoing;
         void setupGrid();
         void setupMenu();
         int findBombCount(int x,int y);
+        bool winCheck();
         void recursiveClean(int x,int y);
+        void explodeAll();
+        void showMsg(QString s);
 signals:
         void newGame();
 
