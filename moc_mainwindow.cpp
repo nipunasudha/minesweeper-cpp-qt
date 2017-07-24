@@ -30,14 +30,14 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: signature, parameters, type, tag, flags
-      15,   12,   11,   11, 0x0a,
-      31,   12,   11,   11, 0x0a,
+      14,   12,   11,   11, 0x0a,
+      33,   30,   11,   11, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0id\0boxClicked(int)\0"
+    "MainWindow\0\0x\0boxClicked(int)\0id\0"
     "boxRightClicked(int)\0"
 };
 

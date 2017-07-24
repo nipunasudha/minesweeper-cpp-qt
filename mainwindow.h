@@ -17,8 +17,8 @@ class MainWindow: public QMainWindow
         explicit MainWindow(QWidget *parent=0);
         ~MainWindow();
         public slots:
-            void boxClicked(int id);
-        void boxRightClicked(int id);
+            void boxClicked(int x);
+            void boxRightClicked(int id);
     private:
         Box* grid[10][10];
         Ui::MainWindow *ui;

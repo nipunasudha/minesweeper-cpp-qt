@@ -38,6 +38,8 @@ void Box::mousePressEvent(QMouseEvent *e)
 {
     if(e->button()==Qt::RightButton)
         emit rightClicked();
+    if(e->button()==Qt::LeftButton)
+        emit clicked();
 }
 bool Box::boxRightClicked(){
     printf("Box:: I was rigtclicked.\n");
