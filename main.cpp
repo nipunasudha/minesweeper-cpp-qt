@@ -1,10 +1,9 @@
 #include <QtGui>
-#include "mainwindow.h"
+#include "gamemanager.h"
 int main(int argc, char* argv[])
 {
     QApplication app(argc,argv);
-    MainWindow mainwindow;
-    mainwindow.show();
+    GameManager gamemanager;
 
     return app.exec();
 }
