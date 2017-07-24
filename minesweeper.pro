@@ -6,6 +6,7 @@ TEMPLATE = app
 TARGET = 
 DEPENDPATH += .
 INCLUDEPATH += .
+QMAKE_CXXFLAGS += -std=c++0x
 
 # Input
 HEADERS += box.h gamemanager.h mainwindow.h utils.h

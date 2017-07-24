@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent):
 }
 void MainWindow::setupMenu(){
     connect(ui->actionNew_Game, SIGNAL(triggered()),this, SIGNAL(newGame()));
+    connect(ui->actionExit_2, SIGNAL(triggered()),qApp,SLOT(quit()));
 }
 void MainWindow::setupGrid(){
     //mapper definitions
