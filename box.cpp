@@ -34,6 +34,15 @@ bool Box::boxClicked(){
     update();
     return isBomb();
 }
+void Box::mousePressEvent(QMouseEvent *e)
+{
+    if(e->button()==Qt::RightButton)
+        emit rightClicked();
+}
+bool Box::boxRightClicked(){
+    printf("Box:: I was rigtclicked.\n");
+    return isBomb();
+}
 void Box::update(){
     QString style="";
     if(boxState==BoxState::unclicked){

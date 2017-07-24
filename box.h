@@ -18,7 +18,12 @@ class Box: public QPushButton
         void flag();
         void setBomb(bool b);
         bool boxClicked();
+        bool boxRightClicked();
         bool isClicked();
+public slots:
+        void mousePressEvent(QMouseEvent *e);
+signals:
+		void rightClicked();
 
 };
 #endif

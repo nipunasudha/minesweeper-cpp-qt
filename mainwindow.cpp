@@ -17,9 +17,13 @@ MainWindow::MainWindow(QWidget *parent):
     setupGrid();
 }
 void MainWindow::setupGrid(){
-    QSignalMapper *signalMapper;
-    signalMapper = new QSignalMapper(this);
-    connect(signalMapper, SIGNAL(mapped(int)),this, SLOT(boxClicked(int)));
+//mapper definitions
+    QSignalMapper *mouseLeftMapper;
+    QSignalMapper *mouseRightMapper;
+    mouseLeftMapper = new QSignalMapper(this);
+    mouseRightMapper = new QSignalMapper(this);
+    connect(mouseLeftMapper, SIGNAL(mapped(int)),this, SLOT(boxClicked(int)));
+    connect(mouseRightMapper, SIGNAL(mapped(int)),this, SLOT(boxRightClicked(int)));
 
     for(int i=0;i<SIZE;i++){
         for(int j=0;j<SIZE;j++){
@@ -33,8 +37,10 @@ void MainWindow::setupGrid(){
             b->setFont(font);
             ui->mineField->addWidget(b,i,j);
             //event binding
-            signalMapper->setMapping(b,(i*1000)+j);
-            connect(b,SIGNAL(clicked()),signalMapper,SLOT(map()));
+            mouseLeftMapper->setMapping(b,(i*1000)+j);
+            mouseRightMapper->setMapping(b,(i*1000)+j);
+            connect(b,SIGNAL(clicked()),mouseLeftMapper,SLOT(map()));
+            connect(b,SIGNAL(rightClicked()),mouseRightMapper,SLOT(map()));
         }
     }
 }
@@ -61,6 +67,15 @@ void MainWindow::boxClicked(int id){
     b->boxClicked(); 
     recursiveClean(xy[0],xy[1]);
 }
+void MainWindow::boxRightClicked(int id){
+    int xy[2];
+    xy[0]=id/1000;
+    xy[1]=id%1000;
+    printf("R-clicked - (%d,%d)\n",
+            xy[0],xy[1]);
+    Box* b=grid[xy[0]][xy[1]];
+    b->boxRightClicked(); 
+}
 void MainWindow::recursiveClean(int x,int y){
         grid[x][y]->boxClicked();
         grid[x][y]->setBombCount(findBombCount(x,y));
@@ -79,6 +94,7 @@ void MainWindow::recursiveClean(int x,int y){
         return;
     }
 }
+
 MainWindow::~MainWindow()
 {
     delete ui;
