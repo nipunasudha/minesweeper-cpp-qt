@@ -9,6 +9,7 @@ class Box: public QPushButton
     private:
         int bombCount;
         bool bomb;
+        bool flagged;
         BoxState boxState;
     public:
         Box(const QString & text,bool bomb, QWidget * parent = 0);

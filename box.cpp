@@ -6,6 +6,7 @@
 Box::Box(const QString & text,bool bomb, QWidget * parent) : QPushButton(text, parent)
 { 
     bombCount=0;
+    flagged=false;
     boxState=BoxState::unclicked;
     setBomb(bomb);
     update();
@@ -23,7 +24,10 @@ void Box::setBomb(bool b){
     bomb=b;
 }
 void Box::flag(){
-
+    if(boxState==BoxState::unclicked){
+        flagged=!flagged;
+        setText(flagged?"X":"");
+    }
 }
 bool Box::isClicked(){
     return (boxState==BoxState::clicked);
@@ -43,6 +47,7 @@ void Box::mousePressEvent(QMouseEvent *e)
 }
 bool Box::boxRightClicked(){
     printf("Box:: I was rigtclicked.\n");
+    flag();
     return isBomb();
 }
 void Box::update(){
